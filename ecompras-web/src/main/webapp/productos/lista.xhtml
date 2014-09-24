@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h1>Lista de productos existentes</h1>
+    <h:form id="frmLista">
+        <h:dataTable id="tablaProductos"  value="#{prodcutoCtrl.lista}" var="prod"
+             border="1">
+    <f:facet name="header">
+        <h:outputText value="Productos Cargados" />
+    </f:facet>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Nombre" />
+        </f:facet>
+        <h:outputText value="#{prod.titulo}" />
+    </h:column>
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Precio" />
+        </f:facet>
+        <h:outputText value="#{prod.precio}" />
+    </h:column>
+    <f:facet name="footer">
+        <h3>listo</h3>
+    </f:facet>
+</h:dataTable>
+    </h:form>
+</ui:composition>
