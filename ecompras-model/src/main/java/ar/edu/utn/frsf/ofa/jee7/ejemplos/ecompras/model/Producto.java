@@ -71,7 +71,12 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
+    @Override
+    public String toString(){
+        return Integer.valueOf(this.id).toString();
+    }
+    
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Producto && this.id == ((Producto)obj).id;
