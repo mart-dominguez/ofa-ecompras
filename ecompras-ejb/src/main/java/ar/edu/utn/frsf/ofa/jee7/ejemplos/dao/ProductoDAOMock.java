@@ -47,7 +47,7 @@ public class ProductoDAOMock implements ProductoDAO{
     }
 
     @Override
-    public Producto buscar(String nombre) {
-        return this._dummyList.get(0);
+    public List<Producto> buscar(String nombre) {
+        return this._dummyList;
     }
 }

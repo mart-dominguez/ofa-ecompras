@@ -6,11 +6,19 @@
 
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Administrador
  */
+@Entity
 public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nombre;
     private int cuit;

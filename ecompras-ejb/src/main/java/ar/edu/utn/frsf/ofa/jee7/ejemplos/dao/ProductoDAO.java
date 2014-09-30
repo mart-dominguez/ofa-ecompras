@@ -16,5 +16,5 @@ public interface ProductoDAO {
     public void addProducto(Producto prd);
     public List<Producto> buscar();
     public Producto buscar(int id);
-    public Producto buscar(String nombre);
+    public List<Producto> buscar(String nombre);
 }
