@@ -7,11 +7,9 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
 
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.PedidoDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.DaoJPA;
-import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.DetallePedido;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Pedido;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
-import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,9 +28,8 @@ public class OrdenCompraController implements Serializable{
     @Inject @DaoJPA
     private PedidoDAO pedidoDao;
     
-    public String crearPedido(){
-        this.pedido = new Pedido();
-        return "detalleProducto";
+    public String hacerPedido(){
+        return "pedido";
     }
     
     public String agregarProducto(){

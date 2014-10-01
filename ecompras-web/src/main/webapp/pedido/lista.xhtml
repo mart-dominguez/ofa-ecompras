@@ -6,32 +6,39 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h1>Lista de productos existentes</h1>
     <h:form id="frmLista">
-        <h:dataTable id="tablaProductos"  value="#{vtaCtrl.producto}" var="prod"
+        <h:dataTable id="tablaProductos"  value="#{compraCtrl.pedido.detalle}" var="det"
              border="1">
     <f:facet name="header">
         <h:outputText value="Productos Cargados" />
     </f:facet>
     <h:column>
         <f:facet name="header">
-            <h:outputText value="Nombre" />
+            <h:outputText value="Producto" />
         </f:facet>
-        <h:outputText value="#{prod.precio}" />
+        <h:outputText value="#{det.producto.titulo}" />
     </h:column>
     <h:column>
         <f:facet name="header">
             <h:outputText value="Precio" />
         </f:facet>
-        <h:outputText value="#{prod.precio}" />
+        <h:outputText value="#{det.producto.precio}" />
     </h:column>
     <h:column>
-        <h:commandLink value="Comprar" action="#{compraCtrl.hacerPedido}">
-            <f:setPropertyActionListener target="#{compraCtrl.producto}" value="#{prod}" />
-        </h:commandLink>
+        <f:facet name="header">
+            <h:outputText value="Cantidad" />
+        </f:facet>
+        <h:outputText value="#{det.cantidad}" />
     </h:column>
-
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Costo Total" />
+        </f:facet>
+        <h:outputText value="#{det.cantidad * det.producto.precio}" />
+    </h:column>
     <f:facet name="footer">
-        <h3>listo</h3>
+        <h3>Detalle del pedido</h3>
     </f:facet>
 </h:dataTable>
+        <h:commandButton value="CONFIRMAR COMPRA" action="#{compraCtrl.confirmarPedido}"></h:commandButton>
     </h:form>
 </ui:composition>

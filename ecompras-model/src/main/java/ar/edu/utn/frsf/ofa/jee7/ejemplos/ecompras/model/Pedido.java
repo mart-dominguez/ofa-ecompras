@@ -9,16 +9,35 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Administrador
  */
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int nro;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "FECHA_PEDIDO")
     private Date fechaPedido;
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
     private List<DetallePedido> detalle;
+    @ManyToOne
+    @JoinColumn(name="ID_CLIENTE")
     private Cliente cliente;
 
     /**
