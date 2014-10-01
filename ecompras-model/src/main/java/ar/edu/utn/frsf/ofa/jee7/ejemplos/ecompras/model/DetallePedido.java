@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 /**
  *
@@ -24,7 +26,7 @@ public class DetallePedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int cantidad;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="ID_PRODUCTO")
     private Producto producto;
     /**
@@ -105,4 +107,5 @@ public class DetallePedido {
         this.pedido = pedido;
     }
     
+   
 }

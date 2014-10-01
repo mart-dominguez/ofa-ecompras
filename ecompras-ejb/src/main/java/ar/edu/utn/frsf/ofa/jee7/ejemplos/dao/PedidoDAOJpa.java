@@ -52,11 +52,13 @@ public class PedidoDAOJpa implements PedidoDAO{
         cli.setMail("cliente"+rand.nextInt(5000)+"@mail.com");
         em.persist(cli);
         for(DetallePedido det : ped.getDetalle()){
-            det.setProducto(em.merge(det.getProducto()));
+            //det.setProducto(em.merge(det.getProducto()));
+            det.setPedido(ped);
+            det.setMontoTotal(det.getCantidad()*det.getProducto().getPrecio());
             em.persist(det);
         }
         ped.setCliente(cli);
-        this.em.persist(ped);
+        //this.em.persist(ped);
     }
     
 

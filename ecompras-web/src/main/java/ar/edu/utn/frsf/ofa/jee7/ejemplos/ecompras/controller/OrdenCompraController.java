@@ -40,7 +40,8 @@ public class OrdenCompraController implements Serializable{
 
     public String confirmarPedido(){
         pedidoDao.confirmarCompra(pedido);
-        return null;
+        this.pedido = new Pedido();
+        return "/comprar.xhtml";
     }
 
     /**
