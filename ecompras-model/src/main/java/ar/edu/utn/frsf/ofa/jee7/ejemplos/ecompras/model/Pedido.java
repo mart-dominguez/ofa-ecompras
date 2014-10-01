@@ -6,6 +6,7 @@
 
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,6 +75,11 @@ public class Pedido {
      */
     public void setDetalle(List<DetallePedido> detalle) {
         this.detalle = detalle;
+    }
+    
+    public void addDetalle(DetallePedido dp){
+        if(this.detalle==null) this.detalle = new ArrayList<DetallePedido>();
+        this.detalle.add(dp);
     }
 
     /**

@@ -13,8 +13,10 @@ import java.util.List;
  * @author Administrador
  */
 public interface ProductoDAO {
-    public void addProducto(Producto prd);
+    public void guardar(Producto prd);
     public List<Producto> buscar();
     public Producto buscar(int id);
     public List<Producto> buscar(String nombre);
+    public List<Producto> buscar(String nombre,double precioMin, double precioMax);
+
 }

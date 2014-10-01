@@ -10,9 +10,8 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:link outcome="administracion/productos.xhtml" value="Administrar"></h:link>
-                <h:link outcome="comprar.xhtml" value="Comprar"></h:link>
-
+        <ui:include src="ventas/busqueda.xhtml"></ui:include>
+        <ui:include src="ventas/lista.xhtml"></ui:include>
     </ui:define>
 
     <ui:define name="bottom">

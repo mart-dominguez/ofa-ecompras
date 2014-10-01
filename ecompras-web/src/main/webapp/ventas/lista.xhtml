@@ -6,7 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h1>Lista de productos existentes</h1>
     <h:form id="frmLista">
-        <h:dataTable id="tablaProductos"  value="#{prodcutoCtrl.lista}" var="prod"
+        <h:dataTable id="tablaProductos"  value="#{vtaCtrl.producto}" var="prod"
              border="1">
     <f:facet name="header">
         <h:outputText value="Productos Cargados" />
@@ -15,9 +15,7 @@
         <f:facet name="header">
             <h:outputText value="Nombre" />
         </f:facet>
-            <h:commandLink value="#{prod.titulo}" >
-                <f:setPropertyActionListener target="#{prodcutoCtrl.producto}" value="#{prod}" />
-            </h:commandLink>
+        <h:outputText value="#{prod.precio}" />
     </h:column>
     <h:column>
         <f:facet name="header">
@@ -25,6 +23,12 @@
         </f:facet>
         <h:outputText value="#{prod.precio}" />
     </h:column>
+    <h:column>
+        <h:commandLink value="Comprar" action="#{compraCtrl.crearPedido()}">
+            <f:setPropertyActionListener target="#{compraCtrl.producto}" value="#{prod}" />
+        </h:commandLink>
+    </h:column>
+
     <f:facet name="footer">
         <h3>listo</h3>
     </f:facet>

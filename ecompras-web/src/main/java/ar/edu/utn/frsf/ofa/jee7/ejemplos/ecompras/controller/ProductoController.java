@@ -7,6 +7,7 @@
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
 
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.ProductoDAO;
+import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.DaoJPA;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
 import java.util.List;
@@ -25,7 +26,7 @@ import javax.inject.Named;
 @ViewScoped
 public class ProductoController implements Serializable{
     
-    @Inject 
+    @Inject @DaoJPA
     private ProductoDAO productoLogica; 
     
     private Producto producto;
@@ -41,7 +42,7 @@ public class ProductoController implements Serializable{
     }
     
     public String guardar(){
-        this.productoLogica.addProducto(producto);
+        this.productoLogica.guardar(producto);
         this.producto =null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se Guardo", "Se guardo el producto"));
         return null;

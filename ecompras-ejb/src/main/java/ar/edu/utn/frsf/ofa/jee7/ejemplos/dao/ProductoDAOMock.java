@@ -29,7 +29,7 @@ public class ProductoDAOMock implements ProductoDAO{
     }
     
     @Override
-    public void addProducto(Producto prd){
+    public void guardar(Producto prd){
         this._dummyList.add(prd);
     }
 
@@ -49,5 +49,10 @@ public class ProductoDAOMock implements ProductoDAO{
     @Override
     public List<Producto> buscar(String nombre) {
         return this._dummyList;
+    }
+
+    @Override
+    public List<Producto> buscar(String nombre, double precioMin, double precioMax) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
