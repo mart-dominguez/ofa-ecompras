@@ -4,9 +4,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h1>Lista de productos existentes</h1>
     <h:form id="frmLista">
-        <h:dataTable id="tablaProductos"  value="#{prodcutoCtrl.lista}" var="prod"
+          <h1>Lista de productos existentes</h1>
+          <h:dataTable id="tablaProductos"  value="#{prodcutoCtrl.lista}" var="prod" width="100%"
              border="1">
     <f:facet name="header">
         <h:outputText value="Productos Cargados" />
@@ -21,7 +21,14 @@
         <f:facet name="header">
             <h:outputText value="Precio" />
         </f:facet>
-        <h:outputText value="#{prod.precio}" />
+        <h:outputText value="#{prod.precio}" >
+            <f:convertNumber type="currency" />
+        </h:outputText>
+    </h:column>
+    <h:column>
+        <h:commandLink value="Seleccionar" action="#{prodcutoCtrl.seleccionar}">
+            <f:setPropertyActionListener target="#{prodcutoCtrl.producto}"  value="#{prod}" />
+        </h:commandLink>
     </h:column>
     <f:facet name="footer">
         <h3>listo</h3>

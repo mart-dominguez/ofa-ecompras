@@ -10,6 +10,8 @@ import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.ProductoDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -41,12 +43,26 @@ public class ProductoController implements Serializable{
     }
     
     public String guardar(){
-        this.productoLogica.addProducto(producto);
+        Logger.getLogger("LOG_PRODUCTO").log(Level.INFO, "ID PRODUCTO: "+producto.getId());
+        if(producto.getId()>0) this.productoLogica.actualizarProducto(producto);
+        else this.productoLogica.addProducto(producto);
         this.producto =null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se Guardo", "Se guardo el producto"));
         return null;
     }
 
+      public String eliminar(){
+        if(producto.getId()>0) this.productoLogica.borrarProducto(producto.getId());
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se Guardo", "Se borro el producto "+this.producto.getTitulo()));
+        this.producto =null;
+        return null;
+    }
+
+    
+    public String seleccionar(){
+        return null;
+    }
+    
     /**
      * @return the producto
      */
