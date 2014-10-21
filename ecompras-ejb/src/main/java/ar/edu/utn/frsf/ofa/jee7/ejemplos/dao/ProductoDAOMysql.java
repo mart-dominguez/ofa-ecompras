@@ -7,7 +7,6 @@
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.dao;
 
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.ConexionDB;
-import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.Log;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.MysqlDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.sql.Connection;
@@ -28,7 +27,6 @@ import javax.sql.DataSource;
  */
 @RequestScoped
 @MysqlDAO
-@Log
 public class ProductoDAOMysql implements ProductoDAO{
     @Inject @ConexionDB
     private DataSource ds;
