@@ -11,6 +11,7 @@ import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.MysqlDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -80,5 +81,10 @@ public class ProductoController implements Serializable{
      */
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+    
+    public int getImagenNro(){
+        Random r = new Random();
+        return r.nextInt(6)+1;
     }
 }

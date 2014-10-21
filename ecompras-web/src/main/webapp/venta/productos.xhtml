@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">        
+    <h:form>
+        <div class="col-sm-9 padding-right">
+            <div class="features_items"><!--features_items-->
+                <h2 class="title text-center">Productos en Oferta</h2>
+                <ui:repeat id="rptProd" var="producto" value="#{prodcutoCtrl.lista}">
+                <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <h:graphicImage library="defecto" name="images/shop/product12.jpg" />
+                                <h2>
+                                    <h:outputText value="#{producto.precio}">
+                                        <f:convertNumber type="currency"></f:convertNumber>
+                                    </h:outputText>
+                                </h2>
+                                <p>#{producto.titulo}</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
+                            <div class="product-overlay">
+                                <div class="overlay-content">
+                                    <h2>
+                                    <h:outputText value="#{producto.precio}">
+                                        <f:convertNumber type="currency"></f:convertNumber>
+                                    </h:outputText>
+                                    </h2>
+                                    <p>#{producto.titulo}</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choose">
+                            <ul class="nav nav-pills nav-justified">
+                                <li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                <li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </ui:repeat>
+                <ul class="pagination">
+                    <li class="active"><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">&raquo;</a></li>
+                </ul>            
+            </div><!--features_items-->
+        </div>
+    </h:form>
+</ui:composition>	
