@@ -6,18 +6,32 @@
 
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 /**
  *
  * @author Administrador
  */
+@Entity
 public class DetallePedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int cantidad;
+    @ManyToOne
+    @JoinColumn(name = "ID_PRODUCTO")
     private Producto producto;
     /**
      * Registro el monto total de la linea porque el precio del producto puede variar.
      */
     private double montoTotal;
+    @ManyToOne
+    @JoinColumn(name = "ID_PEDIDO")
     private Pedido pedido;
 
     /**

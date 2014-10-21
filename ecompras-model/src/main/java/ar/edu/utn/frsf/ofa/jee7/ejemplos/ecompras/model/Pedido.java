@@ -8,16 +8,29 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Administrador
  */
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int nro;
     private Date fechaPedido;
+    @OneToMany(mappedBy = "pedido")
     private List<DetallePedido> detalle;
+    @ManyToOne
+    @JoinColumn(name="ID_CLIENTE")
     private Cliente cliente;
 
     /**
