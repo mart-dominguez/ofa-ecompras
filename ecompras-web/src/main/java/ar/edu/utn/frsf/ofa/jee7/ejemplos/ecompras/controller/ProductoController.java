@@ -83,8 +83,9 @@ public class ProductoController implements Serializable{
         this.producto = producto;
     }
     
-    public int getImagenNro(){
+    public String getImagen(){
         Random r = new Random();
-        return r.nextInt(6)+1;
+        int nroImg = r.nextInt(12)+1;
+        return "images/shop/product"+nroImg+".jpg";
     }
 }
