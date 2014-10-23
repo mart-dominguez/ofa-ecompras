@@ -9,6 +9,7 @@ import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.ConexionDB;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.JpaDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.Log;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,9 +21,8 @@ import javax.transaction.Transactional;
  * @author Martin
  */
 @RequestScoped
-@Log
 @JpaDAO
-@Transactional
+@Transactional(Transactional.TxType.REQUIRES_NEW)
 public class ProductoDAOJpa implements ProductoDAO {
 
     @Inject @ConexionDB
@@ -45,7 +45,13 @@ public class ProductoDAOJpa implements ProductoDAO {
 
     @Override
     public List<Producto> buscar() {
-        return em.createQuery("SELECT p FROM Producto p").getResultList();
+        List<Producto> aux = new ArrayList<Producto>();
+        try{
+        aux = em.createQuery("SELECT p FROM Producto p").getResultList();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return aux;
     }
 
     @Override

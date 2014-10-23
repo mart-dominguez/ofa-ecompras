@@ -6,7 +6,7 @@
     <class>ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.DetallePedido</class>
     <class>ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Pedido</class>
     <class>ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
