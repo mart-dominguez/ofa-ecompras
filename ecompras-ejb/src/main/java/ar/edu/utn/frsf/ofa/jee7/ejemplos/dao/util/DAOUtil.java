@@ -13,6 +13,8 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 /**
@@ -26,6 +28,10 @@ public class DAOUtil {
    @Resource(lookup="jdbc/compras")
    private DataSource conexion;
 
+   @Produces @ConexionDB
+   @PersistenceContext(unitName = "compras_PU")
+   private EntityManager em;
+   
     @Produces   
     public Logger produceLog(InjectionPoint injectionPoint) {   
         return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());   
@@ -42,6 +48,20 @@ public class DAOUtil {
      */
     public void setConexion(DataSource conexion) {
         this.conexion = conexion;
+    }
+
+    /**
+     * @return the em
+     */
+    public EntityManager getEm() {
+        return em;
+    }
+
+    /**
+     * @param em the em to set
+     */
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
    
 }

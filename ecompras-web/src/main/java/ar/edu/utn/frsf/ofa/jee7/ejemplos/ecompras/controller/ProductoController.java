@@ -7,6 +7,7 @@
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
 
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.ProductoDAO;
+import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.JpaDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.MysqlDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
@@ -29,7 +30,8 @@ import javax.inject.Named;
 @ViewScoped
 public class ProductoController implements Serializable{
     
-    @Inject @MysqlDAO
+    @Inject @JpaDAO
+
     private ProductoDAO productoLogica; 
     
     private Producto producto;
