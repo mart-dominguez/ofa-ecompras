@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="encabezado.xhtml" x="1294" y="32" zoom="true"/>
+        <Node id="venta/categorias.xhtml" x="3080" y="32" zoom="true"/>
+        <Node id="venta/encabezado.xhtml" x="1929" y="32" zoom="true"/>
+        <Node id="productos/lista.xhtml" x="3604" y="32" zoom="true"/>
+        <Node id="productos/abm.xhtml" x="289" y="32" zoom="true"/>
+        <Node id="venta/productos.xhtml" x="2782" y="32" zoom="true"/>
+        <Node id="administracion/productos.xhtml" x="942" y="32" zoom="true"/>
+        <Node id="contracts/defecto/boostrap.xhtml" x="581" y="32" zoom="true"/>
+        <Node id="principal.xhtml" x="34" y="32" zoom="true"/>
+        <Node id="productos/buscar.xhtml" x="2475" y="32" zoom="true"/>
+        <Node id="venta.xhtml" x="2238" y="32" zoom="true"/>
+        <Node id="inicio.xhtml" x="3895" y="32" zoom="true"/>
+        <Node id="pie.xhtml" x="3381" y="32" zoom="true"/>
+        <Node id="contracts/defecto/template.xhtml" x="1569" y="32" zoom="true"/>
+        <Node id="home.xhtml" x="4131" y="32" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
