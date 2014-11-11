@@ -23,6 +23,7 @@ import javax.transaction.Transactional;
 @RequestScoped
 @JpaDAO
 @Transactional(Transactional.TxType.REQUIRES_NEW)
+@Log
 public class ProductoDAOJpa implements ProductoDAO {
 
     @Inject @ConexionDB

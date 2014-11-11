@@ -8,11 +8,14 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
 
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.PedidoDAO;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.Log;
+import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Cliente;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.DetallePedido;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Pedido;
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model.Producto;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
@@ -30,6 +33,7 @@ public class PedidoController implements Serializable{
     private Producto prd;
     private Pedido pedido;
     private int idDetalleSeleccionado;
+    private @Inject Cliente cli;
     
     @Inject  
     transient Logger log;
@@ -73,6 +77,10 @@ public class PedidoController implements Serializable{
     private void inicializarPedido(){
         if(this.getPedido() == null) {
             this.setPedido(new Pedido());
+            this.pedido.setCliente(cli);
+            this.pedido.setFechaPedido(new Date());
+            Random r =new Random();
+            this.pedido.setNro(r.nextInt(100000));
             this.getPedido().setDetalle(new ArrayList<DetallePedido>());
         }
     }

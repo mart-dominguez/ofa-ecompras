@@ -5,8 +5,10 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.InicializadorEJB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,9 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Martin
  */
-@WebServlet(urlPatterns = {"/ReportPdf"})
-public class ReportPdfServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/Admin"})
+public class AdminServlet extends HttpServlet {
 
+    @Inject
+    private InicializadorEJB initEJB;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,6 +35,7 @@ public class ReportPdfServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -40,7 +45,15 @@ public class ReportPdfServlet extends HttpServlet {
             out.println("<title>Servlet ReportPdfServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ReportPdfServlet at " + request.getContextPath() + "</h1>");
+            if(request.getParameter("OPER")!=null && request.getParameter("OPER").equalsIgnoreCase("INIT_PRD")){
+                out.println("<h1>creando 5 productos</h1>");
+                initEJB.crearProductos(5);
+            }  
+            if(request.getParameter("OPER")!=null && request.getParameter("OPER").equalsIgnoreCase("INIT_CLI")){
+                out.println("<h1>creando 5 productos</h1>");
+                initEJB.crearClientes(5);
+            }  
+            out.println("<h1>Operacion realizada" + request.getParameter("OPER")+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
