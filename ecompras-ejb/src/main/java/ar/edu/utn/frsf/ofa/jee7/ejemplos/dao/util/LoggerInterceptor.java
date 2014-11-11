@@ -15,6 +15,7 @@ import javax.interceptor.InvocationContext;
 @Log
 @Interceptor
 public class LoggerInterceptor {
+    
     @Inject
     Logger logger;
     
