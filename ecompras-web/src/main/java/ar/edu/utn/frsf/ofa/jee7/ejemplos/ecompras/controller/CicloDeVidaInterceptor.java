@@ -6,10 +6,12 @@
 
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.FileHandler;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
@@ -27,7 +29,16 @@ import javax.servlet.http.HttpServletRequest;
 public class CicloDeVidaInterceptor implements PhaseListener{
 
 static final Logger LOGGER = Logger.getLogger(CicloDeVidaInterceptor.class.getName());
- 
+{
+    try {
+        LOGGER.addHandler(new FileHandler("ciclovida.log", true));
+        
+    } catch (IOException ex) {
+        Logger.getLogger(CicloDeVidaInterceptor.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SecurityException ex) {
+        Logger.getLogger(CicloDeVidaInterceptor.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
     @Override
     public void afterPhase(PhaseEvent event) {
         LOGGER.log(Level.INFO, "Después:{0}", event.getPhaseId());
