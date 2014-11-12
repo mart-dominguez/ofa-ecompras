@@ -6,14 +6,23 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.controller;
  * and open the template in the editor.
  */
 import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.InicializadorEJB;
+import ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util.ConexionDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
@@ -21,7 +30,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(urlPatterns = {"/Admin"})
 public class AdminServlet extends HttpServlet {
-
+  @Inject @ConexionDB
+    private DataSource ds;
     @Inject
     private InicializadorEJB initEJB;
     /**
@@ -52,10 +62,45 @@ public class AdminServlet extends HttpServlet {
             if(request.getParameter("OPER")!=null && request.getParameter("OPER").equalsIgnoreCase("INIT_CLI")){
                 out.println("<h1>creando 5 productos</h1>");
                 initEJB.crearClientes(5);
-            }  
+            } 
             out.println("<h1>Operacion realizada" + request.getParameter("OPER")+ "</h1>");
             out.println("</body>");
             out.println("</html>");
+        }
+    }
+    
+    private void reportePDF(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String salida;
+ 
+        try {
+            HashMap hm = null;
+            hm = new HashMap();
+ 
+            ServletOutputStream servletOutputStream = response.getOutputStream();
+ 
+            byte[] bytes = null;
+ 
+            try {
+
+                bytes = JasperRunManager.runReportToPdf(getServletContext().getResourceAsStream("/rpt/ventas.jasper" ), hm, ds.getConnection());
+ 
+                response.setContentType("application/pdf");
+                response.setContentLength(bytes.length);
+                servletOutputStream.write(bytes, 0, bytes.length);
+                servletOutputStream.flush();
+                servletOutputStream.close();
+            } catch (JRException e) {
+                StringWriter stringWriter = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(stringWriter);
+                e.printStackTrace(printWriter);
+                response.setContentType("text/plain");
+                response.getOutputStream().print(stringWriter.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            salida = "Error generando Reporte Jasper, el error del Sistema es " + e;
+            System.out.println(salida);
         }
     }
 
@@ -71,7 +116,13 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+            if(request.getParameter("OPER")!=null && request.getParameter("OPER").equalsIgnoreCase("RPT_VTAS")){
+                this.reportePDF(request, response);
+            } 
+            else{
+                processRequest(request, response);
+            }
     }
 
     /**
