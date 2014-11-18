@@ -30,7 +30,9 @@
                                     </h:outputText>
                                     </h2>
                                     <p>#{producto.titulo}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <h:commandLink action="#{pediddoCtrl.addToOrden}" class="btn btn-default add-to-cart" value="Add to cart"><i class="fa fa-shopping-cart"></i>
+                                        <f:setPropertyActionListener target="#{pediddoCtrl.prd}" value="#{producto}" ></f:setPropertyActionListener>
+                                    </h:commandLink>
                                 </div>
                             </div>
                         </div>
@@ -52,4 +54,4 @@
             </div><!--features_items-->
         </div>
     </h:form>
-</ui:composition>	
+</ui:composition>
