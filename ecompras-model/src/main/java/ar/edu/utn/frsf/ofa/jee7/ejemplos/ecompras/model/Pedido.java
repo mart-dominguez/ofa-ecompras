@@ -8,6 +8,7 @@ package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,9 +31,9 @@ public class Pedido {
     private int nro;
     @Temporal(TemporalType.DATE)
     private Date fechaPedido;
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido" ,cascade = {CascadeType.PERSIST , CascadeType.MERGE} )
     private List<DetallePedido> detalle;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST , CascadeType.MERGE})
     @JoinColumn(name="ID_CLIENTE")
     private Cliente cliente;
 

@@ -7,6 +7,7 @@
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.dao.util;
 
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.Dependent;
@@ -34,7 +35,9 @@ public class DAOUtil {
    
     @Produces   
     public Logger produceLog(InjectionPoint injectionPoint) {   
-        return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());   
+        Logger l = Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());   
+        l.setLevel(Level.WARNING);
+        return l;
     }
     /**
      * @return the conexion

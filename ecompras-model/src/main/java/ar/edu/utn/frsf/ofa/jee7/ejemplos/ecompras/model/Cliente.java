@@ -6,6 +6,7 @@
 
 package ar.edu.utn.frsf.ofa.jee7.ejemplos.ecompras.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ import javax.persistence.Id;
  * @author Administrador
  */
 @Entity
-public class Cliente {
+public class Cliente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
